@@ -149,7 +149,7 @@ EOL;
     private function saveServicesToFile()
     {
         foreach($this->modelList as $modelName => &$content) {
-            $fileName = __DIR__ . '/../../Services/'.$modelName. 'Service.php';
+            $fileName = __DIR__ . '/../../../../../../app/Services/'.$modelName. 'Service.php';
             file_put_contents($fileName, $content);
             $this->info('Created class in '.$fileName);
         }

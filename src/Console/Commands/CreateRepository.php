@@ -147,7 +147,7 @@ EOL;
     private function saveRepositorysToFile()
     {
         foreach($this->modelList as $modelName => &$content) {
-            $fileName = __DIR__ . '/../../Repositories/' . $modelName . 'Repository.php';
+            $fileName = __DIR__ . '/../../../../../../app/Repositories/' . $modelName . 'Repository.php';
             file_put_contents($fileName, $content);
             $this->info('Created class in '.$fileName);
         }

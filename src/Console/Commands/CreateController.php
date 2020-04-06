@@ -209,7 +209,7 @@ EOL;
     private function saveControllersToFile()
     {
         foreach($this->modelList as $modelName => &$content) {
-            $fileName = __DIR__ . '/../../Http/Controllers/'.$modelName. 'Controller.php';
+            $fileName = __DIR__ . '/../../../../../../app/Http/Controllers/'.$modelName. 'Controller.php';
             file_put_contents($fileName, $content);
             $this->info('Created controller class in '.$fileName);
         }

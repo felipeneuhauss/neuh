@@ -58,7 +58,7 @@ class CreateModel extends Command
         $tableName = $this->argument('tableName');
         $modelName = $this->prepareModelName($tableName);
 
-        if (file_exists(__DIR__ . '/../../Models/'.$modelName. '.php')) {
+        if (file_exists(__DIR__ . '/../../../../../../app/Models/'.$modelName. '.php')) {
             return;
         }
         $modelName = null;
