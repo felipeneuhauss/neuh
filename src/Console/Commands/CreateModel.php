@@ -303,7 +303,7 @@ WHERE
     private function saveModelsToFile()
     {
         foreach($this->modelList as $modelName => &$content) {
-            $fileName = __DIR__ . '/../../Models/'.$modelName. '.php';
+            $fileName = __DIR__ . '/../../../../../../app/Models/'.$modelName. '.php';
             file_put_contents($fileName, $content);
             $this->info('Created class in '.$fileName);
         }
