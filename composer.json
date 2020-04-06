@@ -1,0 +1,25 @@
+{
+    "name": "felipeneuhauss/neuh",
+    "description": "API backend util classes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Felipe Neuhauss Araújo",
+            "email": "felipe.neuhauss@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {"Neuh\\": "src/"}
+    },
+    "require": {
+        "php": "^7.2.5",
+        "illuminate/console": "^7.0",
+        "illuminate/filesystem": "^7.0",
+        "illuminate/support": "^7.0",
+        "illuminate/contracts": "^7.4",
+        "illuminate/database": "^7.4",
+        "ramsey/uuid": "^4.0"
+    }
+}
