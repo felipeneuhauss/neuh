@@ -2,7 +2,9 @@
 
 namespace Neuh\Console\Commands;
 
+use App\Http\Resources\UserCollection;
 use Illuminate\Console\Command;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 /**
@@ -118,9 +120,8 @@ $classNameScope
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request \$request
+     * @return UserCollection
      */
     public function index(Request \$request)
     {
