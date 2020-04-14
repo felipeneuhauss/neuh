@@ -122,9 +122,9 @@ $classNameScope
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request \$request)
     {
-        \$data = \$this->service->index();
+        \$data = \$this->service->all(\$request->all());
 
         return new $collectionClass(\$data);
     }
@@ -135,7 +135,7 @@ $classNameScope
      */
     public function store($postModel \$request)
     {
-        return new \App\Http\Resources\\$modelName(\$this->service->save(\$request->all()));
+        return new \App\Http\Resources\\$modelName(\$this->service->create(\$request->all()));
     }
 
     /**
@@ -159,7 +159,7 @@ $classNameScope
      */
     public function update($postModel \$request, $modelName \$$entityName)
     {
-        return new \App\Http\Resources\\$modelName(\$this->service->save(\$request->toArray(), \$$entityName));
+        return new \App\Http\Resources\\$modelName(\$this->service->update(\$request->toArray(), \$$entityName));
     }
 
     /**
@@ -171,7 +171,7 @@ $classNameScope
      */
     public function destroy($modelName \$$entityName)
     {
-        return \$this->service->remove(\$$entityName);
+        return \$this->service->destroy(\$$entityName);
     }
 }
 
