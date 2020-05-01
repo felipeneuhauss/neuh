@@ -69,6 +69,10 @@ abstract class AbstractService
      */
     public function paginate(array $params = [])
     {
+        if (!empty($params['page'])) {
+            unset($params['page']);
+        }
+
         return $this->repository->paginate($params);
     }
 
