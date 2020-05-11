@@ -305,7 +305,7 @@ WHERE
         foreach($this->modelList as $modelName => &$content) {
             $fileName = __DIR__ . '/../../../../../../app/Models/'.$modelName. '.php';
             file_put_contents($fileName, $content);
-            $this->info('Created class in '.$fileName);
+            $this->info('Created class '. $modelName . '.php');
         }
     }
 

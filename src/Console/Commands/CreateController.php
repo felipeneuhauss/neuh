@@ -3,6 +3,7 @@
 namespace Neuh\Console\Commands;
 
 use App\Http\Resources\UserCollection;
+use App\Services\EntityService;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -114,6 +115,10 @@ use App\Services\\$serviceModel;
 $classNameScope
 {
 
+    /**
+     * $collectionClass constructor.
+     * @param $serviceModel 
+     */
     public function __construct($serviceModel \$service)
     {
         \$this->service = \$service;
@@ -121,7 +126,7 @@ $classNameScope
 
     /**
      * @param Request \$request
-     * @return UserCollection
+     * @return $collectionClass
      */
     public function index(Request \$request)
     {
@@ -212,7 +217,7 @@ EOL;
         foreach($this->modelList as $modelName => &$content) {
             $fileName = __DIR__ . '/../../../../../../app/Http/Controllers/'.$modelName. 'Controller.php';
             file_put_contents($fileName, $content);
-            $this->info('Created controller class in '.$fileName);
+            $this->info('Created controller class '.$modelName . 'Controller.php');
         }
     }
 

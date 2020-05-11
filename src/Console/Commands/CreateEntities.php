@@ -49,6 +49,7 @@ class CreateEntities extends Command
         $this->call('make:resource', ['name' => $modalName]);
         $this->call('make:resource', ['name' => $modalName . 'Collection']);
         $this->call('make:request', ['name' => $modalName . 'Post']);
+        $this->call('make:repository', ['name' => $modalName . 'Repository']);
     }
 
     private function prepareModelName($tableName)

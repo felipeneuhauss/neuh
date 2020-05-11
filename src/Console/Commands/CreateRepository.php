@@ -65,7 +65,7 @@ class CreateRepository extends Command
                 $this->info("Repository $tableName created");
             }
 
-            $this->saveRepositorysToFile();
+            $this->saveRepositoriesIntoFile();
 
             $this->comment("All complete");
 
@@ -144,12 +144,12 @@ EOL;
     /**
      * Salva todas as models carregadas
      */
-    private function saveRepositorysToFile()
+    private function saveRepositoriesIntoFile()
     {
         foreach($this->modelList as $modelName => &$content) {
             $fileName = __DIR__ . '/../../../../../../app/Repositories/' . $modelName . 'Repository.php';
             file_put_contents($fileName, $content);
-            $this->info('Created class in '.$fileName);
+            $this->info('Created class ' . $modelName . 'Repository.php');
         }
     }
 
