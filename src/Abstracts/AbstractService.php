@@ -119,6 +119,19 @@ abstract class AbstractService
     }
 
     /**
+     * @param array $params
+     * @param Model $vo
+     * @return array
+     */
+    protected function prepareParams(array $params = [], Model $vo): array
+    {
+        unset($params['created_at']);
+        unset($params['updated_at']);
+
+        return $params;
+    }
+
+    /**
      * Prepare data
      *
      * @param array $params
@@ -128,6 +141,7 @@ abstract class AbstractService
         if (auth()->check()) {
             $params['user_id'] = auth()->user()->id;
         }
+        $params = $this->prepareParams($params);
         return $params;
     }
 
@@ -140,6 +154,7 @@ abstract class AbstractService
      */
     protected function preUpdate($params = [], Model $vo) {
         unset($params['user_id']);
+        $params = $this->prepareParams($params);
         return $params;
     }
 
