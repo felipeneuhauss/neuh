@@ -120,10 +120,10 @@ abstract class AbstractService
 
     /**
      * @param array $params
-     * @param Model $vo
+     * @param Model|null $vo
      * @return array
      */
-    protected function prepareParams(array $params = [], Model $vo): array
+    protected function prepareParams(array $params = [], Model $vo = null): array
     {
         unset($params['created_at']);
         unset($params['updated_at']);
