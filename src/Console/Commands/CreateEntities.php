@@ -43,13 +43,13 @@ class CreateEntities extends Command
         $this->call('create:model', ['tableName' => $tableName]);
         $this->call('create:service', ['tableName' => $tableName]);
         $this->call('create:controller', ['tableName' => $tableName]);
+        $this->call('create:repository', ['tableName' => $tableName . 'Repository']);
         $this->call('make:factory', ['name' => $modalName . 'Factory']);
         $this->call('make:seeder', ['name' => $modalName . 'TableSeeder']);
         $this->call('make:test', ['name' => $modalName . 'Test']);
         $this->call('make:resource', ['name' => $modalName]);
         $this->call('make:resource', ['name' => $modalName . 'Collection']);
         $this->call('make:request', ['name' => $modalName . 'Post']);
-        $this->call('make:repository', ['name' => $modalName . 'Repository']);
     }
 
     private function prepareModelName($tableName)
