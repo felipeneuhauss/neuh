@@ -5,7 +5,6 @@ namespace Neuh\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-
 /**
  * Class responsible to generate a model or a set of models based in database tables
  * and configure your structure with interfaces and inheritance
@@ -59,7 +58,6 @@ class CreateService extends Command
         $modelName = null;
 
         try {
-
             if ($tableName) {
                 $this->generateService($tableName);
                 $this->info("Service $tableName created");
@@ -68,19 +66,19 @@ class CreateService extends Command
             $this->saveServicesToFile();
 
             $this->comment("All complete");
-
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        return $this->info('Models customized. End.');
 
+        $this->info('Models customized. End.');
     }
 
     /**
      * Create the service
      * @param $tableName
      */
-    public function generateService($tableName) {
+    public function generateService($tableName)
+    {
 
         // Get model file
         $modelName  = $this->prepareModelName($tableName);
@@ -133,7 +131,7 @@ EOL;
             $modelNameExplodeList = explode('_', strtolower($tableName));
 
             $newModelName = '';
-            foreach($modelNameExplodeList as $kName => $name) {
+            foreach ($modelNameExplodeList as $kName => $name) {
                 $newModelName .= ucfirst(trim(Str::singular($name)));
             }
 
@@ -148,11 +146,10 @@ EOL;
      */
     private function saveServicesToFile()
     {
-        foreach($this->modelList as $modelName => &$content) {
+        foreach ($this->modelList as $modelName => &$content) {
             $fileName = __DIR__ . '/../../../../../../app/Services/'.$modelName. 'Service.php';
             file_put_contents($fileName, $content);
             $this->info('Created class '. $modelName . 'Service.php');
         }
     }
-
 }

@@ -5,7 +5,6 @@ namespace Neuh\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-
 /**
  * Class responsible to generate a model or a set of models based in database tables
  * and configure your structure with interfaces and inheritance
@@ -53,13 +52,12 @@ class CreateRepository extends Command
         $tableName = $this->argument('tableName');
         $modelName = $this->prepareModelName($tableName);
 
-        if (file_exists(__DIR__ . '/../../Repositories/'.$modelName. 'Repository.php')) {
+        if (file_exists(__DIR__ . '/../../Repositories/' . $modelName . 'Repository.php')) {
             return;
         }
         $modelName = null;
 
         try {
-
             if ($tableName) {
                 $this->generateRepository($tableName);
                 $this->info("Repository $tableName created");
@@ -68,22 +66,22 @@ class CreateRepository extends Command
             $this->saveRepositoriesIntoFile();
 
             $this->comment("All complete");
-
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        return $this->info('Models customized. End.');
 
+        $this->info('Models customized. End.');
     }
 
     /**
      * Funcao que cria a model referente a uma tabela e tambem cria seus relacionamentos
      * @param $tableName
      */
-    public function generateRepository($tableName) {
+    public function generateRepository($tableName)
+    {
 
         // Get model file
-        $modelName   = $this->prepareModelName($tableName);
+        $modelName = $this->prepareModelName($tableName);
 
         $serviceNameClass = $modelName . 'Repository';
 
@@ -131,7 +129,7 @@ EOL;
             $modelNameExplodeList = explode('_', strtolower($tableName));
 
             $newModelName = '';
-            foreach($modelNameExplodeList as $kName => $name) {
+            foreach ($modelNameExplodeList as $kName => $name) {
                 $newModelName .= ucfirst(trim(Str::singular($name)));
             }
 
@@ -146,11 +144,10 @@ EOL;
      */
     private function saveRepositoriesIntoFile()
     {
-        foreach($this->modelList as $modelName => &$content) {
+        foreach ($this->modelList as $modelName => &$content) {
             $fileName = __DIR__ . '/../../../../../../app/Repositories/' . $modelName . 'Repository.php';
             file_put_contents($fileName, $content);
             $this->info('Created class ' . $modelName . 'Repository.php');
         }
     }
-
 }

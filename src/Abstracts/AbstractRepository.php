@@ -110,7 +110,7 @@ abstract class AbstractRepository
      * @return Model
      * @throws \Exception
      */
-    public function update(array $params = [], Model $vo)
+    public function update(Model $vo, array $params = [])
     {
         if (is_null($vo)) {
             throw new \Exception('No entity found');

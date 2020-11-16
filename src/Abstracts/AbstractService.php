@@ -33,15 +33,15 @@ abstract class AbstractService
     /**
      * Update an entity
      *
-     * @param array $params
      * @param Model $vo
+     * @param array $params
      * @return Model
      * @throws \Exception
      */
-    public function update(array $params = [], Model $vo)
+    public function update(Model $vo, array $params = [])
     {
-        $params = $this->preUpdate($params, $vo);
-        $vo = $this->repository->update($params, $vo);
+        $params = $this->preUpdate($vo, $params);
+        $vo = $this->repository->update($vo, $params);
         $this->postUpdate($vo, $params);
         return $vo;
     }
@@ -58,7 +58,7 @@ abstract class AbstractService
         if ($this->repository->destroy($model)) {
             return;
         }
-        abort(404);
+        throw new \Exception('Could not remove the entity');
     }
 
     /**
@@ -96,7 +96,6 @@ abstract class AbstractService
      */
     public function find($id = null)
     {
-
         if (!$this->isValidUuid($id)) {
             throw new \Exception('Trying get by an invalid uuid');
         }
@@ -137,7 +136,8 @@ abstract class AbstractService
      * @param array $params
      * @return array
      */
-    protected function preCreate($params = []) {
+    protected function preCreate($params = [])
+    {
         if (auth()->check()) {
             $params['user_id'] = auth()->user()->id;
         }
@@ -152,7 +152,8 @@ abstract class AbstractService
      * @param Model $vo
      * @return array
      */
-    protected function preUpdate($params = [], Model $vo) {
+    protected function preUpdate($params = [], Model $vo)
+    {
         unset($params['user_id']);
         $params = $this->prepareParams($params);
         return $params;

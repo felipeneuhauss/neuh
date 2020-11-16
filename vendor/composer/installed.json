@@ -520,6 +520,64 @@
         ]
     },
     {
+        "name": "phpstan/phpstan",
+        "version": "0.12.55",
+        "version_normalized": "0.12.55.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpstan/phpstan.git",
+            "reference": "4382b2b2059ec7e5135d07685ec1e3e16ae32d16"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4382b2b2059ec7e5135d07685ec1e3e16ae32d16",
+            "reference": "4382b2b2059ec7e5135d07685ec1e3e16ae32d16",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.1|^8.0"
+        },
+        "conflict": {
+            "phpstan/phpstan-shim": "*"
+        },
+        "time": "2020-11-14T10:20:35+00:00",
+        "bin": [
+            "phpstan",
+            "phpstan.phar"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.12-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "bootstrap.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "PHPStan - PHP Static Analysis Tool",
+        "funding": [
+            {
+                "url": "https://github.com/ondrejmirtes",
+                "type": "github"
+            },
+            {
+                "url": "https://www.patreon.com/phpstan",
+                "type": "patreon"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
         "name": "psr/container",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -764,6 +822,59 @@
             "guid",
             "identifier",
             "uuid"
+        ]
+    },
+    {
+        "name": "squizlabs/php_codesniffer",
+        "version": "3.5.8",
+        "version_normalized": "3.5.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+            "reference": "9d583721a7157ee997f235f327de038e7ea6dac4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9d583721a7157ee997f235f327de038e7ea6dac4",
+            "reference": "9d583721a7157ee997f235f327de038e7ea6dac4",
+            "shasum": ""
+        },
+        "require": {
+            "ext-simplexml": "*",
+            "ext-tokenizer": "*",
+            "ext-xmlwriter": "*",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+        },
+        "time": "2020-10-23T02:01:07+00:00",
+        "bin": [
+            "bin/phpcs",
+            "bin/phpcbf"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Greg Sherwood",
+                "role": "lead"
+            }
+        ],
+        "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+        "homepage": "https://github.com/squizlabs/PHP_CodeSniffer",
+        "keywords": [
+            "phpcs",
+            "standards"
         ]
     },
     {

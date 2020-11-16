@@ -59,7 +59,6 @@ class CreateController extends Command
         $modelName = null;
 
         try {
-
             if ($tableName) {
                 $this->generateController($tableName);
                 $this->info("Controller $tableName created");
@@ -68,19 +67,19 @@ class CreateController extends Command
             $this->saveControllersToFile();
 
             $this->comment("All complete");
-
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        return $this->info('Models customized. End.');
 
+        $this->info('Models customized. End.');
     }
 
     /**
      * Funcao que cria a model referente a uma tabela e tambem cria seus relacionamentos
      * @param $tableName
      */
-    public function generateController($tableName) {
+    public function generateController($tableName)
+    {
 
         // Get model file
         $modelName   = $this->prepareModelName($tableName);
@@ -199,7 +198,7 @@ EOL;
             $modelNameExplodeList = explode('_', strtolower($tableName));
 
             $newModelName = '';
-            foreach($modelNameExplodeList as $kName => $name) {
+            foreach ($modelNameExplodeList as $kName => $name) {
                 $newModelName .= ucfirst(trim(Str::singular($name)));
             }
 
@@ -214,11 +213,10 @@ EOL;
      */
     private function saveControllersToFile()
     {
-        foreach($this->modelList as $modelName => &$content) {
+        foreach ($this->modelList as $modelName => &$content) {
             $fileName = __DIR__ . '/../../../../../../app/Http/Controllers/'.$modelName. 'Controller.php';
             file_put_contents($fileName, $content);
             $this->info('Created controller class '.$modelName . 'Controller.php');
         }
     }
-
 }

@@ -54,7 +54,6 @@ class CustomValidation extends Command
 
         $validateReturnString =  "return Validator::make(Request::all(), [";
         $reservedColumns = array('id', 'updated_at', 'created_at', 'deleted_at');
-        $validationDefinitionList = [];
         $validationMessages = "";
         $validationDefinitionString = "";
 
@@ -62,9 +61,6 @@ class CustomValidation extends Command
             $validationDefinitionList = [];
 
             if (!in_array($columnInfo->COLUMN_NAME, $reservedColumns)) {
-
-//                $name = $this->ask('Qual o nome do campo em português para a mensagem?');
-
                 // Por tipo de campo
                 if ($columnInfo->IS_NULLABLE == "NO") {
                     // 'fantasy_name.required'         => 'O campo Nome fantasia é obrigatório.',
@@ -103,7 +99,6 @@ class CustomValidation extends Command
 
         $validateReturnString .= $validationMessages ."]);";
 
-        dump($validateReturnString);exit;
         $this->info($validateReturnString);
     }
 
@@ -112,7 +107,8 @@ class CustomValidation extends Command
      * @param $str
      * @return mixed
      */
-    public function getNumerics ($str = '') {
+    public function getNumerics($str = '')
+    {
         preg_match_all('/\d+/', $str, $matches);
         return $matches[0][0];
     }

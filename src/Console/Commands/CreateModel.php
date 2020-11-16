@@ -68,7 +68,8 @@ class CreateModel extends Command
             $tables = DB::select("SHOW TABLES");
         }
 
-        $confirmTimeStamp = $this->confirm('Deseja ativar o timestamp nas models para update_at e created_at automaticamente?', true);
+        $confirmTimeStamp = $this->confirm('Deseja ativar o timestamp nas models para update_at e 
+        created_at automaticamente?', true);
 
         $this->timestamp = $confirmTimeStamp;
 
@@ -77,7 +78,6 @@ class CreateModel extends Command
         $this->softDelete = $confirmSoftDelete;
 
         try {
-
             if ($tableName) {
                 $this->generateModel($tableName);
                 $this->info("Model $tableName customized");
@@ -90,7 +90,7 @@ class CreateModel extends Command
                 $bar = $this->output->createProgressBar(count($tables));
 
                 foreach ($tables as $table) {
-                    if ($table->$paramName != 'DOCTYPES' && strpos($table->$paramName , 'MDRT_') !== 0) {
+                    if ($table->$paramName != 'DOCTYPES' && strpos($table->$paramName, 'MDRT_') !== 0) {
                         $this->info("Creating " . $table->$paramName . " model");
                         $this->generateModel($table->$paramName);
                         $bar->advance();
@@ -102,19 +102,19 @@ class CreateModel extends Command
             $this->saveModelsToFile();
 
             $this->comment("All complete");
-
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        return $this->info('Models customized. End.');
 
+        $this->info('Models customized. End.');
     }
 
     /**
      * Funcao que cria a model referente a uma tabela e tambem cria seus relacionamentos
      * @param $tableName
      */
-    public function generateModel($tableName) {
+    public function generateModel($tableName)
+    {
 
         // Get model file
         $modelName   = $this->prepareModelName($tableName);
@@ -139,7 +139,7 @@ class CreateModel extends Command
 
         $fillableColumnsName = array();
         if (count($columns)) {
-            foreach($columns as $column) {
+            foreach ($columns as $column) {
                 $fillableColumnsName[] = $column->column_name;
             }
         }
@@ -234,7 +234,7 @@ EOL;
             $modelNameExplodeList = explode('_', strtolower($tableName));
 
             $newModelName = '';
-            foreach($modelNameExplodeList as $kName => $name) {
+            foreach ($modelNameExplodeList as $kName => $name) {
                 $newModelName .= ucfirst(trim(Str::singular($name)));
             }
 
@@ -302,7 +302,7 @@ WHERE
      */
     private function saveModelsToFile()
     {
-        foreach($this->modelList as $modelName => &$content) {
+        foreach ($this->modelList as $modelName => &$content) {
             $fileName = __DIR__ . '/../../../../../../app/Models/'.$modelName. '.php';
             file_put_contents($fileName, $content);
             $this->info('Created class '. $modelName . '.php');
@@ -314,7 +314,6 @@ WHERE
         $fileContent = '';
 
         if (count($fkColumns)) {
-
             foreach ($fkColumns as &$fkColumn) {
                 # BelongTo relationship
                 $relationalTableName = $fkColumn->REFERENCED_TABLE_NAME;
@@ -354,7 +353,6 @@ EOL;
         $fileContent = '';
         if (count($dependentColumns)) {
             foreach ($dependentColumns as $column) {
-
                 $modelRelationName = $this->prepareModelName($column->TABLE_NAME);
                 $modelRelationClassName = "App\\Models\\" . $modelRelationName;
 
@@ -366,7 +364,6 @@ EOL;
                  * Obtem o arquivo referente a coluna para add o hasMany() na classe pai
                  */
                 if ($this->confirm('A tabela '.$column->TABLE_NAME. " é um relacionamento N x N?")) {
-
                     $this->comment($tableName . ' belongsToMany ' . $modelRelationName);
                     $fileContent .= <<<EOL
 
@@ -390,11 +387,11 @@ EOL;
             }
         }
         return $fileContent;
-
     }
 
 
-    public function getColumns($tableName) {
+    public function getColumns($tableName)
+    {
         return DB::select("SELECT column_name AS column_name
                 FROM information_schema.columns
                 WHERE table_schema = '".env('DB_DATABASE', 'forge')."' AND table_name = '$tableName'");
