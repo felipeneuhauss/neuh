@@ -148,11 +148,11 @@ abstract class AbstractService
     /**
      * Prepare data to update
      *
-     * @param $params
      * @param Model $vo
+     * @param $params
      * @return array
      */
-    protected function preUpdate($params = [], Model $vo)
+    protected function preUpdate(Model $vo, $params = [])
     {
         unset($params['user_id']);
         $params = $this->prepareParams($params);
